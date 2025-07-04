@@ -6,7 +6,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="">
       <body className="bg-gradient-to-br from-blue-50 to-white min-h-screen flex flex-col">
         <header className="w-full bg-white/80 backdrop-blur border-b border-gray-200 shadow-sm py-4 px-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -18,7 +18,7 @@ export default function RootLayout({
           {children}
         </main>
         <footer className="w-full bg-white/80 backdrop-blur border-t border-gray-200 py-3 text-center text-gray-500 text-sm mt-8">
-          &copy; {new Date().getFullYear()} Quranic WebApp. All rights reserved.
+          &copy; {new Date().toDateString()} Quranic WebApp. All rights reserved.
         </footer>
       </body>
     </html>
