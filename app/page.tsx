@@ -40,32 +40,45 @@ export default function Home() {
   }, [selectedEdition]);
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-white to-gray-100 p-600 md:p-100">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8 flex flex-col sm:flex-row  sm:items-center justify-center gap-4">
-          <h1 className="text-3xl font-bold text-gray-800">📖 Quran Chapters</h1>
-
-        </div>
-
-        {chapters.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {chapters.map((s) => (
-              <Link
-                key={s.chapter}
-                href={`/${s.chapter}`}
-                className="block bg-white border border-gray-200 rounded-xl p-5 shadow hover:shadow-lg hover:border-blue-500 transition duration-200"
-              >
-                <h2 className="text-xl font-semibold text-gray-800 mb-1">
-                  {s.name} <span className="text-sm text-gray-500">({s.englishName})</span>
-                </h2>
-                <p className="text-sm text-gray-600">Verses: {s.ayahs}</p>
-              </Link>
+    <div className="space-y-10">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+        <h1 className="text-4xl font-extrabold text-blue-800 tracking-tight flex items-center gap-2">
+          <span role="img" aria-label="book">📖</span> Quran Chapters
+        </h1>
+        <label className="flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-3 py-2 shadow-sm">
+          <span className="font-medium text-gray-700">Edition:</span>
+          <select
+            value={selectedEdition}
+            onChange={(e) => setSelectedEdition(e.target.value)}
+            className="ml-2 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-50 text-gray-700"
+          >
+            {editions.map((ed) => (
+              <option key={ed.value} value={ed.value}>
+                {ed.label}
+              </option>
             ))}
-          </div>
-        ) : (
-          <p className="text-center text-gray-500 mt-10">No chapters found.</p>
-        )}
+          </select>
+        </label>
       </div>
-    </main>
+
+      {chapters.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {chapters.map((s) => (
+            <Link
+              key={s.chapter}
+              href={`/${s.chapter}`}
+              className="block bg-white border border-gray-200 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-blue-500 transition duration-200 group"
+            >
+              <h2 className="text-2xl font-bold text-blue-700 mb-2 group-hover:text-blue-900 transition">
+                {s.name} <span className="text-base text-gray-500 font-normal">({s.englishName})</span>
+              </h2>
+              <p className="text-sm text-gray-600">Verses: {s.ayahs}</p>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-gray-500 mt-10">No chapters found.</p>
+      )}
+    </div>
   );
 }
